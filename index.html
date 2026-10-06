@@ -26,6 +26,22 @@
   }
   .wrap{padding:0 40px 44px;}
 
+  /* ============ 分页模式：?part=1 / 2 / 3 单独出图 ============ */
+  .pagehead{display:none;padding:32px 0 20px;border-bottom:1px solid rgba(255,255,255,.10);}
+  body[data-part="2"] .pagehead,body[data-part="3"] .pagehead{display:block;}
+  .ph-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
+  .ph-badge{
+    display:inline-block;padding:10px 24px;border-radius:13px;
+    font-size:19px;font-weight:800;letter-spacing:1px;color:#FFE07A;
+    background:linear-gradient(90deg,rgba(226,50,36,.34),rgba(168,20,15,.26));
+    border:1px solid rgba(255,120,90,.42);
+  }
+  .ph-badge b{color:#FF8A6E;}
+  body[data-part="1"] #sec2,body[data-part="1"] #sec3{display:none;}
+  body[data-part="2"] header,body[data-part="2"] #sec1,body[data-part="2"] #sec3{display:none;}
+  body[data-part="3"] header,body[data-part="3"] #sec1,body[data-part="3"] #sec2{display:none;}
+  body[data-part="1"] #sec1,body[data-part="2"] #sec2,body[data-part="3"] #sec3{margin-top:34px;}
+
   /* ================= HEADER ================= */
   header{padding:44px 0 30px;text-align:center;position:relative;}
   .top-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;}
@@ -273,8 +289,17 @@
     </div>
   </header>
 
+  <!-- ============ 分页小头（part2 / part3 单独出图时显示） ============ -->
+  <div class="pagehead">
+    <div class="ph-row">
+      <span class="pill"><i></i>东莞区域 · 国庆冲刺</span>
+      <span class="date">2026.<b>10.07</b> 周三</span>
+    </div>
+    <span class="ph-badge">今天是政策<b>最后一天</b> · 错过今晚：车价多花 3000+</span>
+  </div>
+
   <!-- ============ PART 1 ============ -->
-  <section class="sec">
+  <section class="sec" id="sec1">
     <div class="sec-head">
       <span class="sec-no">PART 1</span>
       <span class="sec-title">Why Today</span>
@@ -339,7 +364,7 @@
   </section>
 
   <!-- ============ PART 2 ============ -->
-  <section class="sec">
+  <section class="sec" id="sec2">
     <div class="sec-head">
       <span class="sec-no">PART 2</span>
       <span class="sec-title">Target 目标</span>
@@ -361,7 +386,7 @@
   </section>
 
   <!-- ============ PART 3 ============ -->
-  <section class="sec">
+  <section class="sec" id="sec3">
     <div class="sec-head">
       <span class="sec-no">PART 3</span>
       <span class="sec-title">Strategy &amp; Remind</span>
@@ -443,6 +468,13 @@
 </div>
 
 <script>
+/* ========= 分页出图：?part=1 / 2 / 3 只渲染对应板块 ========= */
+(function(){
+  var p = new URLSearchParams(location.search).get('part');
+  if (p === '1' || p === '2' || p === '3') document.body.setAttribute('data-part', p);
+  if (location.search.indexOf('plain=1') >= 0) document.body.classList.add('plain');
+})();
+
 /* ========= 数据区（每日只改这里） =========
    格式：[短名, 全名, 目标, 已订]  —— 缺口自动计算 */
 const DATA = {
@@ -527,8 +559,6 @@ const DATA = {
   document.getElementById('tGap').textContent = totT-totD;
   document.getElementById('upd').textContent = DATA.updated;
 })();
-
-if (location.search.indexOf('plain=1') >= 0) document.body.classList.add('plain');
 </script>
 </body>
 </html>
