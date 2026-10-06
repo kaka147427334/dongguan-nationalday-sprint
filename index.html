@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>东莞区域 · 国庆冲刺 | 10月7日 政策最后一天</title>
+<style>
+  :root{
+    --gold:#FFD24A; --gold-d:#E8AE24; --gold-l:#FFEFC0;
+    --red:#E8392B; --red-d:#A8140F; --red-l:#FF6A4D;
+    --txt:#FFFFFF; --txt2:rgba(255,255,255,.80); --txt3:rgba(255,255,255,.56);
+    --line:rgba(255,210,74,.24);
+    --card-line:rgba(255,255,255,.11);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{background:#0A0E19;}
+  body{
+    width:900px; max-width:100%; margin:0 auto;
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",-apple-system,"Helvetica Neue",sans-serif;
+    color:var(--txt); -webkit-font-smoothing:antialiased;
+    background:
+      radial-gradient(980px 470px at 50% -150px, rgba(226,50,36,.60), transparent 70%),
+      radial-gradient(700px 500px at 6% 26%, rgba(255,210,74,.13), transparent 74%),
+      radial-gradient(700px 520px at 96% 62%, rgba(226,50,36,.16), transparent 74%),
+      linear-gradient(172deg,#0A0E19 0%,#12122A 40%,#280C12 74%,#130A0F 100%);
+  }
+  .wrap{padding:0 40px 44px;}
+
+  /* ================= HEADER ================= */
+  header{padding:44px 0 30px;text-align:center;position:relative;}
+  .top-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;}
+  .pill{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:8px 18px;border-radius:999px;
+    border:1px solid var(--line);background:rgba(255,210,74,.10);
+    color:var(--gold-l);font-size:16px;font-weight:600;letter-spacing:.5px;
+  }
+  .pill i{width:8px;height:8px;border-radius:50%;background:var(--gold);display:block;}
+  .date{font-size:17px;font-weight:700;color:var(--txt2);letter-spacing:1.5px;}
+  .date b{color:var(--gold);}
+  h1{
+    font-size:72px;line-height:1.12;font-weight:900;letter-spacing:3px;white-space:nowrap;
+    background:linear-gradient(180deg,#FFF3CE 8%,#FFD24A 46%,#E89A16 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    filter:drop-shadow(0 6px 22px rgba(232,174,36,.34));
+  }
+  .head-kicker{font-size:19px;font-weight:600;color:var(--txt2);letter-spacing:7px;margin-bottom:14px;}
+  .countdown{
+    margin-top:22px;display:inline-flex;align-items:center;gap:16px;
+    padding:14px 34px;border-radius:16px;
+    background:linear-gradient(90deg,rgba(226,50,36,.34),rgba(168,20,15,.26));
+    border:1px solid rgba(255,120,90,.42);
+  }
+  .countdown .cd-t{font-size:26px;font-weight:800;letter-spacing:2px;color:#FFF;}
+  .countdown .cd-n{
+    font-size:46px;font-weight:900;line-height:1;color:#FFE07A;
+    text-shadow:0 0 26px rgba(255,190,60,.75);
+  }
+  .countdown .cd-u{font-size:22px;font-weight:800;color:#FFE07A;}
+  .head-sub{margin-top:20px;font-size:19px;color:var(--txt2);letter-spacing:.6px;}
+  .head-sub b{color:#FF8A6E;font-weight:800;}
+  .chips{display:flex;gap:12px;justify-content:center;margin-top:22px;flex-wrap:wrap;}
+  .chip{
+    font-size:15px;font-weight:700;letter-spacing:.4px;
+    padding:9px 16px;border-radius:10px;
+    background:rgba(255,255,255,.06);border:1px solid var(--card-line);color:var(--txt2);
+  }
+  .chip b{color:var(--red-l);}
+
+  /* ================= SECTION ================= */
+  .sec{margin-top:40px;}
+  .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:18px;}
+  .sec-no{
+    font-size:14px;font-weight:900;letter-spacing:1.6px;color:#160A0A;
+    padding:6px 12px;border-radius:7px;
+    background:linear-gradient(135deg,#FFE07A,#E8AE24);
+  }
+  .sec-title{font-size:30px;font-weight:900;letter-spacing:1px;
+    background:linear-gradient(180deg,#FFFFFF,#FFDF9A);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .sec-sub{font-size:17px;color:var(--txt3);font-weight:600;letter-spacing:.4px;margin-left:auto;}
+
+  /* ================= PART 1 ================= */
+  .p1{display:flex;flex-direction:column;gap:16px;}
+  .card{
+    border-radius:18px;padding:24px 26px;
+    background:linear-gradient(180deg,rgba(255,255,255,.062),rgba(255,255,255,.028));
+    border:1px solid var(--card-line);
+    position:relative;overflow:hidden;
+  }
+  .card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;
+    background:linear-gradient(180deg,#FFD24A,#E8392B);}
+  .card-top{display:flex;align-items:center;gap:12px;margin-bottom:6px;flex-wrap:wrap;}
+  .card-idx{
+    width:34px;height:34px;border-radius:10px;flex:0 0 auto;
+    display:flex;align-items:center;justify-content:center;
+    font-size:19px;font-weight:900;color:#160A0A;
+    background:linear-gradient(135deg,#FFE07A,#E8AE24);
+  }
+  .card-name{font-size:23px;font-weight:900;letter-spacing:.6px;color:#FFF;}
+  .card-tag{
+    margin-left:auto;font-size:14px;font-weight:800;letter-spacing:.4px;
+    padding:6px 12px;border-radius:999px;
+    background:rgba(232,57,43,.20);border:1px solid rgba(255,110,80,.42);color:#FFAE97;
+  }
+  .card-note{font-size:15px;color:var(--txt3);margin:2px 0 14px 46px;font-weight:600;}
+  .bl{list-style:none;display:flex;flex-direction:column;gap:10px;}
+  .bl li{
+    display:flex;align-items:center;gap:12px;
+    font-size:17.5px;color:var(--txt2);line-height:1.5;
+    padding:11px 14px;border-radius:11px;background:rgba(0,0,0,.22);
+  }
+  .bl li .k{flex:0 0 auto;font-weight:900;color:#FFE9A8;min-width:190px;letter-spacing:.2px;}
+  .bl li .v{flex:1;}
+  .bl li .v em{font-style:normal;color:#FF7A5E;font-weight:900;}
+  .bl li .v b{color:#FFD24A;font-weight:900;}
+  .card-foot{
+    margin-top:14px;padding:11px 16px;border-radius:11px;
+    font-size:17px;font-weight:800;color:#FFE9A8;letter-spacing:.4px;
+    background:linear-gradient(90deg,rgba(255,210,74,.16),rgba(232,57,43,.14));
+    border:1px dashed rgba(255,210,74,.4);
+  }
+
+  /* subsidy timeline */
+  .tl-row{margin-bottom:16px;}
+  .tl-head{display:flex;justify-content:space-between;align-items:baseline;font-size:15px;color:var(--txt3);font-weight:700;margin-bottom:9px;}
+  .tl-head b{color:#FFD9A0;font-size:16px;}
+  .tl-bar{height:16px;border-radius:999px;background:rgba(255,255,255,.09);overflow:hidden;position:relative;border:1px solid rgba(255,255,255,.08);}
+  .tl-fill{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#E8AE24,#FF7A3C,#E8392B);}
+  .tl-fill.now{width:88%;}
+  .tl-fill.past{width:100%;background:linear-gradient(90deg,#6E7686,#4A5162);}
+  .tl-axis{display:flex;justify-content:space-between;font-size:13.5px;color:var(--txt3);margin-top:7px;font-weight:700;}
+  .tl-flag{font-size:15px;color:#FFAE97;font-weight:800;margin-top:7px;}
+  .tl-flag b{color:#FFD24A;}
+
+  /* ================= PART 2 ================= */
+  .p2-sum{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:16px;}
+  .gcard{
+    border-radius:16px;padding:18px 16px 16px;text-align:center;
+    background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.025));
+    border:1px solid var(--card-line);position:relative;overflow:hidden;
+  }
+  .gcard::after{content:"";position:absolute;inset:0 0 auto 0;height:4px;
+    background:linear-gradient(90deg,#FFD24A,#E8392B);}
+  .gcard .g-name{font-size:19px;font-weight:900;color:#FFE9A8;letter-spacing:.6px;margin-bottom:4px;}
+  .gcard .g-mem{font-size:12.5px;color:var(--txt3);font-weight:600;line-height:1.4;margin-bottom:12px;min-height:35px;}
+  .gcard .g-num{font-size:15px;color:var(--txt2);font-weight:700;line-height:1.85;}
+  .gcard .g-num b{font-size:30px;font-weight:900;color:#FFF;letter-spacing:.5px;vertical-align:-3px;}
+  .gcard .g-num .gap b{color:#FF7A5E;}
+  .gbar{height:8px;border-radius:999px;background:rgba(255,255,255,.10);margin-top:12px;overflow:hidden;}
+  .gbar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#FFD24A,#FF8A3C);}
+  .grate{font-size:13px;color:var(--txt3);font-weight:700;margin-top:7px;letter-spacing:.3px;}
+
+  .total-strip{
+    display:flex;align-items:center;justify-content:space-between;
+    border-radius:14px;padding:16px 24px;margin-bottom:18px;
+    background:linear-gradient(90deg,rgba(232,57,43,.26),rgba(255,210,74,.13));
+    border:1px solid rgba(255,210,74,.34);
+  }
+  .total-strip .t-l{font-size:19px;font-weight:900;letter-spacing:1px;color:#FFE9A8;}
+  .total-strip .t-r{display:flex;gap:30px;}
+  .total-strip .t-r span{font-size:16px;color:var(--txt2);font-weight:700;}
+  .total-strip .t-r b{font-size:27px;font-weight:900;color:#FFF;margin-left:7px;vertical-align:-2px;}
+  .total-strip .t-r .hl b{color:#FF7A5E;}
+
+  .grp{margin-bottom:14px;}
+  .grp-head{display:flex;align-items:center;gap:12px;margin:0 0 9px 2px;}
+  .grp-dot{width:10px;height:10px;border-radius:3px;background:linear-gradient(135deg,#FFD24A,#E8392B);}
+  .grp-name{font-size:19px;font-weight:900;color:#FFE9A8;letter-spacing:.8px;}
+  .grp-tot{font-size:14px;color:var(--txt3);font-weight:700;margin-left:auto;letter-spacing:.3px;}
+  table{width:100%;border-collapse:separate;border-spacing:0 7px;}
+  th{font-size:14.5px;font-weight:800;color:var(--txt3);letter-spacing:1px;text-align:right;padding:0 14px 4px;}
+  th.s{text-align:left;}
+  td{
+    background:rgba(255,255,255,.055);
+    padding:13px 14px;font-size:18px;font-weight:700;color:var(--txt2);
+    text-align:right;border-top:1px solid rgba(255,255,255,.055);border-bottom:1px solid rgba(255,255,255,.055);
+  }
+  td.s{text-align:left;border-left:1px solid rgba(255,255,255,.055);border-radius:12px 0 0 12px;}
+  td:last-child{border-right:1px solid rgba(255,255,255,.055);border-radius:0 12px 12px 0;}
+  td .store{font-size:18.5px;font-weight:900;color:#FFF;letter-spacing:.3px;}
+  td .store small{display:block;font-size:13px;font-weight:600;color:var(--txt3);margin-top:2px;letter-spacing:0;}
+  td.t{color:#FFE9A8;font-weight:900;font-size:20px;}
+  td.a{color:#FFFFFF;font-weight:900;font-size:20px;}
+  td.g{color:#FF7A5E;font-weight:900;font-size:21px;}
+  .cellbar{display:block;height:7px;border-radius:999px;background:rgba(255,255,255,.10);margin-top:7px;overflow:hidden;}
+  .cellbar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#FFD24A,#FF8A3C);}
+  td.zero{color:#6F7686;}
+
+  /* ================= PART 3 ================= */
+  .sc{
+    border-radius:16px;padding:22px 24px;margin-bottom:14px;
+    background:linear-gradient(180deg,rgba(255,255,255,.062),rgba(255,255,255,.028));
+    border:1px solid var(--card-line);position:relative;
+  }
+  .sc-h{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+  .sc-num{
+    width:32px;height:32px;border-radius:9px;flex:0 0 auto;display:flex;align-items:center;justify-content:center;
+    font-size:17px;font-weight:900;color:#160A0A;background:linear-gradient(135deg,#FFE07A,#E8AE24);
+  }
+  .sc-name{font-size:21px;font-weight:900;color:#FFF;letter-spacing:.5px;}
+  .sc-tag{font-size:13.5px;font-weight:800;color:#FFAE97;margin-left:auto;padding:5px 11px;border-radius:999px;
+    background:rgba(232,57,43,.18);border:1px solid rgba(255,110,80,.36);}
+  .say{
+    font-size:17px;line-height:1.78;color:#FFEBC9;
+    padding:15px 18px;border-radius:12px;
+    background:linear-gradient(90deg,rgba(255,210,74,.11),rgba(255,210,74,.03));
+    border-left:4px solid var(--gold);letter-spacing:.2px;
+  }
+  .say b{color:#FFD24A;font-weight:900;}
+  .say u{text-decoration:none;color:#FF8A6E;font-weight:800;}
+  .qrow{margin-top:10px;display:flex;flex-direction:column;gap:9px;}
+  .q{font-size:16.5px;line-height:1.68;color:var(--txt2);padding:11px 14px 11px 16px;border-radius:10px;
+    background:rgba(0,0,0,.24);border-left:3px solid rgba(255,210,74,.5);}
+  .q b{color:#FFD24A;font-weight:900;}
+  .q em{font-style:normal;color:#FF8A6E;font-weight:800;}
+  .rem{display:grid;grid-template-columns:1fr 1fr 1fr;gap:13px;margin-top:4px;}
+  .rc{
+    border-radius:15px;padding:19px 17px;
+    background:linear-gradient(180deg,rgba(232,57,43,.20),rgba(255,210,74,.06));
+    border:1px solid rgba(255,210,74,.30);
+  }
+  .rc .rc-h{font-size:19px;font-weight:900;color:#FFE9A8;letter-spacing:.6px;margin-bottom:9px;display:flex;align-items:center;gap:8px;}
+  .rc .rc-h span{font-size:15px;}
+  .rc p{font-size:15px;line-height:1.72;color:var(--txt2);font-weight:600;}
+  .rc p b{color:#FF8A6E;font-weight:900;}
+
+  /* ================= FOOTER ================= */
+  footer{
+    margin-top:36px;padding-top:20px;border-top:1px solid rgba(255,255,255,.10);
+    font-size:13.5px;line-height:1.9;color:var(--txt3);letter-spacing:.2px;
+  }
+  footer b{color:var(--txt2);}
+  .brand{
+    display:flex;align-items:center;justify-content:center;gap:12px;margin-top:26px;
+    font-size:17px;font-weight:800;letter-spacing:3px;color:rgba(255,255,255,.42);
+  }
+  .brand .lg{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,#FFD24A,#E8392B);}
+
+  @media (max-width:720px){
+    .wrap{padding:0 18px 30px;}
+    h1{font-size:44px;letter-spacing:1px;}
+    .countdown .cd-n{font-size:34px;}
+    .countdown .cd-t{font-size:19px;}
+    .p2-sum{grid-template-columns:1fr 1fr;}
+    .rem{grid-template-columns:1fr;}
+    .bl li{flex-direction:column;align-items:flex-start;gap:4px;}
+    .bl li .k{min-width:0;}
+    .sec-title{font-size:23px;}
+    .sec-sub{display:none;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ============ HEADER ============ -->
+  <header>
+    <div class="top-row">
+      <span class="pill"><i></i>东莞区域 · 国庆冲刺</span>
+      <span class="date">2026.<b>10.07</b> 周三</span>
+    </div>
+    <div class="head-kicker">全 员 决 战 · 最 后 一 天</div>
+    <h1>国庆冲刺 · 决胜收官</h1>
+    <div class="countdown">
+      <span class="cd-t">距离窗口关闭 · 仅剩</span>
+      <span class="cd-n">1</span><span class="cd-u">天</span>
+    </div>
+    <div class="head-sub">今天是政策<b>最后一天</b> ｜ 错过今晚：车价<b>多花3000+</b>，尾款券 · 限时赠送 全部清零</div>
+    <div class="chips">
+      <span class="chip">① 车型权益政策 · <b>10.8起回收</b></span>
+      <span class="chip">② 国家以旧换新补贴 · <b>额度快速缩减</b></span>
+      <span class="chip">③ 东莞车展1万能量积分 · <b>今日结束</b></span>
+    </div>
+  </header>
+
+  <!-- ============ PART 1 ============ -->
+  <section class="sec">
+    <div class="sec-head">
+      <span class="sec-no">PART 1</span>
+      <span class="sec-title">Why Today</span>
+      <span class="sec-sub">三大类政策滑坡总结 ⏳</span>
+    </div>
+    <div class="p1">
+
+      <div class="card">
+        <div class="card-top">
+          <span class="card-idx">1</span>
+          <span class="card-name">车型权益政策回收</span>
+          <span class="card-tag">10.8起执行新政</span>
+        </div>
+        <div class="card-note">C端政策窗口 9.25–10.7，今晚23:59到期</div>
+        <ul class="bl">
+          <li><span class="k">26款 C10 / C11 / C16</span><span class="v">政策各缩水 <em>3000元</em>，三款主力全线下调</span></li>
+          <li><span class="k">25款 B01 / B10</span><span class="v">B端政策（激光雷达2000+全系2000）合计 <em>4000元</em>，10.8起清零</span></li>
+          <li><span class="k">A / B / C / D 全系</span><span class="v">限时赠送 + VIP会员四选一，<em>全线取消</em></span></li>
+          <li><span class="k">27款 B/C/D 及 LAFA5</span><span class="v">尾款抵扣券（1000/1500/2000元）<em>全部回收</em></span></li>
+        </ul>
+        <div class="card-foot">同一台车 · 今晚之后 = 车价多花3000+，尾款券 · 选装基金 · 赠送清单一并归零</div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <span class="card-idx">2</span>
+          <span class="card-name">国家以旧换新补贴 · 倒计时</span>
+          <span class="card-tag">额度正快速缩减</span>
+        </div>
+        <div class="card-note">2026年国家2500亿以旧换新资金已全部下达 · 10月购车赶末班车</div>
+        <div class="tl">
+          <div class="tl-row">
+            <div class="tl-head"><b>本月窗口</b><span>补贴额度正快速缩减 → 补贴结束</span></div>
+            <div class="tl-bar"><span class="tl-fill now"></span></div>
+            <div class="tl-axis"><span>1日</span><span>15日</span><span>31日</span></div>
+            <div class="tl-flag">未提车用户，<b>无法享受补贴</b></div>
+          </div>
+          <div class="tl-row" style="margin-bottom:0;">
+            <div class="tl-head"><b>历史记录：去年10月</b><span>大部分城市补贴已暂停 → 多地告急 → 补贴结束</span></div>
+            <div class="tl-bar"><span class="tl-fill past"></span></div>
+            <div class="tl-axis"><span>1日</span><span>15日</span><span>31日</span></div>
+          </div>
+        </div>
+        <div class="card-foot">补贴是「抢完即止」的额度制 · 去年10月大半城市提前关闸，今年只快不慢</div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <span class="card-idx">3</span>
+          <span class="card-name">东莞车展 · 1万能量积分政策</span>
+          <span class="card-tag">今日结束</span>
+        </div>
+        <div class="card-note">车展专属权益，明日不再受理</div>
+        <ul class="bl">
+          <li><span class="k">10,000 能量积分</span><span class="v">车展期间下定专属，<em>逾期作废、不再补发</em></span></li>
+          <li><span class="k">与车型政策叠加</span><span class="v">今夜是「车型权益 + 车展积分 + 国家补贴」<b>三重叠加</b>的最后窗口</span></li>
+        </ul>
+        <div class="card-foot">三大政策同日到期 · 今天不出手，明天全部归零</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ PART 2 ============ -->
+  <section class="sec">
+    <div class="sec-head">
+      <span class="sec-no">PART 2</span>
+      <span class="sec-title">Target 目标</span>
+      <span class="sec-sub">6-7日两天目标进度 🎯</span>
+    </div>
+
+    <div class="p2-sum" id="groupCards"></div>
+
+    <div class="total-strip">
+      <span class="t-l">区域合计 · 10家门店</span>
+      <div class="t-r">
+        <span>目标<b id="tTotal">–</b></span>
+        <span>已订<b id="tDone">–</b></span>
+        <span class="hl">缺口<b id="tGap">–</b></span>
+      </div>
+    </div>
+
+    <div id="groupTables"></div>
+  </section>
+
+  <!-- ============ PART 3 ============ -->
+  <section class="sec">
+    <div class="sec-head">
+      <span class="sec-no">PART 3</span>
+      <span class="sec-title">Strategy &amp; Remind</span>
+      <span class="sec-sub">话术分享与重点提醒 ⚠️</span>
+    </div>
+
+    <div class="sc">
+      <div class="sc-h">
+        <span class="sc-num">1</span>
+        <span class="sc-name">邀约话术</span>
+        <span class="sc-tag">抢「最后一天」窗口</span>
+      </div>
+      <div class="say">
+        <b>「X哥，今天10月7日，是这轮政策的最后一天，明天0点全系政策自动收回。」</b>
+        您之前看的那台车，今天定和明天定，<u>最少差3000元</u>——尾款抵扣券、限时赠送、选装基金一起取消，都是实打实的现金。
+        国家的以旧换新补贴额度也在快速缩减，10月是最后一班车。
+        <b>您今天几点方便？我把车提前给您留好，到店20分钟就能锁单。</b>
+      </div>
+    </div>
+
+    <div class="sc">
+      <div class="sc-h">
+        <span class="sc-num">2</span>
+        <span class="sc-name">挖需话术</span>
+        <span class="sc-tag">3个问题，快速识别需求与打动点</span>
+      </div>
+      <div class="qrow">
+        <div class="q"><b>① 用途 + 预算</b> —— 「这台车主要家用、通勤还是接送？预算大概落在哪个区间？」<br><em>→ 快速锁定主推车型与配置，避免全场空讲。</em></div>
+        <div class="q"><b>② 置换 + 补贴</b> —— 「您现在这台车打算置换吗？走不走国家以旧换新？」<br><em>→ 能吃到补贴的客户，就是今天最该盯的「必成单」。</em></div>
+        <div class="q"><b>③ 时间 + 付款</b> —— 「价格合适的话，您大概什么时候能定？全款还是按揭？家里还有谁要一起拍板？」<br><em>→ 判断紧迫度、成交路径，以及要不要请主管 / 店长出面。</em></div>
+      </div>
+    </div>
+
+    <div class="sc">
+      <div class="sc-h">
+        <span class="sc-num">3</span>
+        <span class="sc-name">逼单话术</span>
+        <span class="sc-tag">两类高频异议应对</span>
+      </div>
+      <div class="qrow">
+        <div class="q"><b>应对「我不着急」</b> —— 「您不着急我理解，但政策是真不等人。<em>今天不定，明天同一台车您得多掏3000</em>，这不是我催您，是系统明天0点自动收回。<b>咱们先把今天的名额锁住，车型、权益、交付顺序都写进合同</b>，该享受的一样不少；过了今晚，这个价格我真给不回来。」</div>
+        <div class="q"><b>应对「我还想更优惠」</b> —— 「价格我已经帮您算到最低了：<b>尾款抵扣券 + 选装基金 + 限时赠送</b>，这三样加起来就是今天的一口价。<em>明天这三样一起清零，只会更贵，不会更便宜。</em>您要是还有顾虑，我把今天最后一天的名额和交付顺序先给您排上，您看行不行？」</div>
+      </div>
+    </div>
+
+    <div class="rem">
+      <div class="rc">
+        <div class="rc-h"><span>🎯</span>邀约为王</div>
+        <p>最后一天，<b>存量客户全量触达</b>：已到店未定、试驾未定、报价未回、老客户转介绍，一个都不放走。</p>
+      </div>
+      <div class="rc">
+        <div class="rc-h"><span>🛡️</span>多层拦截</div>
+        <p>展厅 / 电话 / 企微 / 朋友圈四路齐发；进店客户由销售 → 主管 → 店长<b>逐级拦截</b>，绝不流失。</p>
+      </div>
+      <div class="rc">
+        <div class="rc-h"><span>🤝</span>三对一谈单</div>
+        <p>关键单必须<b>销售 + 主管 + 店长（店总）</b>配合：销售讲产品、主管给方案、店长拍板，现场闭环、当场落定。</p>
+      </div>
+    </div>
+    <div class="rem" style="grid-template-columns:1fr 1fr;margin-top:13px;">
+      <div class="rc">
+        <div class="rc-h"><span>⏱️</span>缺口到人到时段</div>
+        <p>按缺口倒排，每台车落到<b>具体的人和具体的时间</b>，19:00-21:00高峰全部到岗、不打烊。</p>
+      </div>
+      <div class="rc">
+        <div class="rc-h"><span>🔒</span>当日闭环</div>
+        <p>当日线索当日跟、当日单当日锁，<b>订单不过夜</b>；未成单必须留档原因，次日复盘。</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div><b>数据更新至：</b><span id="upd">2026-10-06 22:50</span> ｜ <b>数据口径：</b>6-7日两天实际订单（来源：门店目标进度表）</div>
+    <div><b>政策依据：</b>C端政策窗口 9.25–10.7，10.8起执行新政；具体以总部政策文件及系统审批为准。</div>
+    <div><b>温馨提示：</b>请如实向客户传递窗口期信息，不夸大、不承诺窗口外权益。本图仅供内部冲刺使用。</div>
+    <div class="brand"><span class="lg"></span>东莞区域 · 国庆冲刺</div>
+  </footer>
+
+</div>
+
+<script>
+/* ========= 数据区（每日只改这里） =========
+   格式：[短名, 全名, 目标, 已订]  —— 缺口自动计算 */
+const DATA = {
+  updated: '2026-10-06 22:50',
+  groups: [
+    { name:'一维集团', members:'莞太 · 厚街 · 大岭山 · 长安', stores:[
+      ['莞太路店','东莞零跑中心莞太路店', 26, 3],
+      ['厚街店','东莞体验中心厚街店', 18, 1],
+      ['大岭山店','东莞体验中心大岭山镇店', 18, 0],
+      ['长安振安东路店','东莞体验中心长安振安东路店', 10, 2]
+    ]},
+    { name:'东唐集团', members:'常朗 · 松山湖 · 东城 · 石排', stores:[
+      ['常朗路店','东莞零跑中心常朗路店', 34, 3],
+      ['松山湖店','东莞体验中心松山湖店', 7, 3],
+      ['东城店','东莞体验中心东城店', 17, 4],
+      ['石排大道店','东莞体验中心石排大道店', 20, 4]
+    ]},
+    { name:'东富集团', members:'寮步', stores:[
+      ['寮步车城店','东莞零跑中心寮步车城店', 28, 4]
+    ]},
+    { name:'华跃集团', members:'虎门', stores:[
+      ['虎门车城店','东莞零跑中心虎门车城店', 22, 1]
+    ]}
+  ]
+};
+
+(function render(){
+  const gEl = document.getElementById('groupCards');
+  const tEl = document.getElementById('groupTables');
+  let totT=0, totD=0;
+  const pct = (d,t)=> t>0 ? Math.min(100, d/t*100) : 0;
+
+  DATA.groups.forEach(g=>{
+    const gt = g.stores.reduce((s,x)=>s+x[2],0);
+    const gd = g.stores.reduce((s,x)=>s+x[3],0);
+    const gg = gt-gd;
+    totT+=gt; totD+=gd;
+    const p = pct(gd,gt);
+    gEl.insertAdjacentHTML('beforeend', `
+      <div class="gcard">
+        <div class="g-name">${g.name}</div>
+        <div class="g-mem">${g.members}</div>
+        <div class="g-num">目标 <b>${gt}</b></div>
+        <div class="g-num">已订 ${gd} ｜ <span class="gap">缺口 <b>${gg}</b></span></div>
+        <div class="gbar"><i style="width:${p.toFixed(1)}%"></i></div>
+        <div class="grate">达成 ${p.toFixed(1)}%</div>
+      </div>`);
+
+    const rows = g.stores.map(s=>{
+      const [short,full,t,d] = s;
+      const gap = t-d, p2 = pct(d,t);
+      return `<tr>
+        <td class="s"><span class="store">${short}<small>${full}</small></span></td>
+        <td class="t">${t}</td>
+        <td class="a ${d===0?'zero':''}">${d}</td>
+        <td class="g">${gap}</td>
+        <td style="width:150px;">
+          <span style="font-size:15px;color:#FFE9A8;font-weight:800;">${p2.toFixed(0)}%</span>
+          <span class="cellbar"><i style="width:${p2.toFixed(1)}%"></i></span>
+        </td>
+      </tr>`;
+    }).join('');
+
+    tEl.insertAdjacentHTML('beforeend', `
+      <div class="grp">
+        <div class="grp-head">
+          <span class="grp-dot"></span>
+          <span class="grp-name">${g.name}</span>
+          <span class="grp-tot">目标 ${gt} ｜ 已订 ${gd} ｜ 缺口 ${gt-gd}</span>
+        </div>
+        <table>
+          <thead><tr>
+            <th class="s">门店</th><th>目标</th><th>已订</th><th>缺口</th><th>进度</th>
+          </tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>`);
+  });
+
+  document.getElementById('tTotal').textContent = totT;
+  document.getElementById('tDone').textContent = totD;
+  document.getElementById('tGap').textContent = totT-totD;
+  document.getElementById('upd').textContent = DATA.updated;
+})();
+
+if (location.search.indexOf('plain=1') >= 0) document.body.classList.add('plain');
+</script>
+</body>
+</html>
