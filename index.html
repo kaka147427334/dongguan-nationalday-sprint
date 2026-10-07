@@ -178,6 +178,11 @@
   .total-strip .t-r span{font-size:16px;color:var(--txt2);font-weight:700;}
   .total-strip .t-r b{font-size:27px;font-weight:900;color:#FFF;margin-left:7px;vertical-align:-2px;}
   .total-strip .t-r .hl b{color:#FF7A5E;}
+  .total-strip .td{
+    font-style:normal;font-size:13.5px;font-weight:900;letter-spacing:.4px;
+    padding:3px 10px;border-radius:999px;margin-left:9px;vertical-align:2px;
+    background:rgba(255,210,74,.18);border:1px solid rgba(255,210,74,.44);color:#FFE9A8;
+  }
 
   .grp{margin-bottom:14px;}
   .grp-head{display:flex;align-items:center;gap:12px;margin:0 0 9px 2px;}
@@ -302,6 +307,9 @@
   body[data-part="2"] .total-strip .t-l{color:#8C1D13;}
   body[data-part="2"] .total-strip .t-r b{color:#141821;}
   body[data-part="2"] .total-strip .t-r .hl b{color:#D93025;}
+  body[data-part="2"] .total-strip .td{
+    background:rgba(217,48,37,.14);border-color:rgba(217,48,37,.32);color:#D93025;
+  }
   /* 门店表 */
   body[data-part="2"] th{color:var(--txt3);}
   body[data-part="2"] .grp-name{color:#8C1D13;}
@@ -441,13 +449,13 @@
     <div class="sec-head">
       <span class="sec-no">PART 2</span>
       <span class="sec-title">Target 目标</span>
-      <span class="sec-sub">6-7日两天目标进度 🎯</span>
+      <span class="sec-sub">截至 10.7 11:33 目标进度 🎯</span>
     </div>
 
     <div class="p2-sum" id="groupCards"></div>
 
     <div class="total-strip">
-      <span class="t-l">区域合计 · 10家门店</span>
+      <span class="t-l">区域合计 · 10家门店<i class="td" id="tToday">今日 +0</i></span>
       <div class="t-r">
         <span>目标<b id="tTotal">–</b></span>
         <span>已订<b id="tDone">–</b></span>
@@ -532,7 +540,7 @@
   </section>
 
   <footer>
-    <div><b>数据更新至：</b><span id="upd">2026-10-06 22:50</span> ｜ <b>数据口径：</b>6-7日两天实际订单（来源：门店目标进度表）</div>
+    <div><b>数据更新至：</b><span id="upd">2026-10-07 11:33</span> ｜ <b>数据口径：</b><span id="updNote">6日起累计已订 · 今日新增 10 单</span>（来源：门店目标进度表 + 系统锁单明细）</div>
     <div><b>政策依据：</b>C端政策窗口 9.25–10.7，10.8起执行新政；具体以总部政策文件及系统审批为准。</div>
     <div><b>温馨提示：</b>请如实向客户传递窗口期信息，不夸大、不承诺窗口外权益。本图仅供内部冲刺使用。</div>
     <div class="brand"><span class="lg"></span>东莞区域 · 国庆冲刺</div>
@@ -549,27 +557,31 @@
 })();
 
 /* ========= 数据区（每日只改这里） =========
-   格式：[短名, 全名, 目标, 已订]  —— 缺口自动计算 */
+   格式：[短名, 全名, 目标, 已订]  —— 缺口自动计算
+   已订 = 6日起累计（含当日新增）；2026-10-07 11:33 更新，今日新增 10 单：
+   莞太路 4 / 大岭山 2 / 东城 2 / 虎门 1 / 寮步 1 */
 const DATA = {
-  updated: '2026-10-06 22:50',
+  updated: '2026-10-07 11:33',
+  updatedNote: '6日起累计已订 · 今日新增 10 单',
+  todayAdd: 10,
   groups: [
     { name:'一维集团', members:'莞太 · 厚街 · 大岭山 · 长安', stores:[
-      ['莞太路店','东莞零跑中心莞太路店', 26, 3],
+      ['莞太路店','东莞零跑中心莞太路店', 26, 7],
       ['厚街店','东莞体验中心厚街店', 18, 1],
-      ['大岭山店','东莞体验中心大岭山镇店', 18, 0],
+      ['大岭山店','东莞体验中心大岭山镇店', 18, 2],
       ['长安振安东路店','东莞体验中心长安振安东路店', 10, 2]
     ]},
     { name:'东唐集团', members:'常朗 · 松山湖 · 东城 · 石排', stores:[
       ['常朗路店','东莞零跑中心常朗路店', 34, 3],
       ['松山湖店','东莞体验中心松山湖店', 7, 3],
-      ['东城店','东莞体验中心东城店', 17, 4],
+      ['东城店','东莞体验中心东城店', 17, 6],
       ['石排大道店','东莞体验中心石排大道店', 20, 4]
     ]},
     { name:'东富集团', members:'寮步', stores:[
-      ['寮步车城店','东莞零跑中心寮步车城店', 28, 4]
+      ['寮步车城店','东莞零跑中心寮步车城店', 28, 5]
     ]},
     { name:'华跃集团', members:'虎门', stores:[
-      ['虎门车城店','东莞零跑中心虎门车城店', 22, 1]
+      ['虎门车城店','东莞零跑中心虎门车城店', 22, 2]
     ]}
   ]
 };
@@ -631,6 +643,10 @@ const DATA = {
   document.getElementById('tDone').textContent = totD;
   document.getElementById('tGap').textContent = totT-totD;
   document.getElementById('upd').textContent = DATA.updated;
+  var un = document.getElementById('updNote');
+  if (un && DATA.updatedNote) un.textContent = DATA.updatedNote;
+  var tt = document.getElementById('tToday');
+  if (tt) tt.textContent = '今日 +' + (DATA.todayAdd || 0);
 })();
 </script>
 </body>
