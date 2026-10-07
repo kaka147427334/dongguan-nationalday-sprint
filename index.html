@@ -11,6 +11,7 @@
     --txt:#FFFFFF; --txt2:rgba(255,255,255,.80); --txt3:rgba(255,255,255,.56);
     --line:rgba(255,210,74,.24);
     --card-line:rgba(255,255,255,.11);
+    --hl-gold:#FFE9A8;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{background:#0A0E19;}
@@ -251,6 +252,78 @@
     font-size:17px;font-weight:800;letter-spacing:3px;color:rgba(255,255,255,.42);
   }
   .brand .lg{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,#FFD24A,#E8392B);}
+
+  /* ============ PART 2 亮色主题（仅 ?part=2 单独出图时生效） ============ */
+  body[data-part="2"]{
+    --gold:#C98A12; --gold-d:#A8720C; --gold-l:#8A5B00;
+    --red:#D93025; --red-d:#B0241B; --red-l:#C62828;
+    --hl-gold:#8A5B00;
+    --txt:#141821; --txt2:rgba(20,24,33,.86); --txt3:rgba(20,24,33,.58);
+    --line:rgba(201,138,18,.40);
+    --card-line:rgba(20,24,33,.11);
+    color:var(--txt);
+    background:
+      radial-gradient(900px 420px at 50% -170px, rgba(232,57,43,.14), transparent 70%),
+      radial-gradient(640px 440px at 3% 16%, rgba(255,196,60,.24), transparent 74%),
+      radial-gradient(640px 470px at 98% 78%, rgba(232,57,43,.10), transparent 74%),
+      linear-gradient(168deg,#FFFFFF 0%,#FFF9EE 40%,#FFF1DE 72%,#FFEAD2 100%);
+  }
+  body[data-part="2"] .pagehead{border-bottom:1px solid rgba(20,24,33,.12);}
+  body[data-part="2"] .ph-badge{
+    color:#A8140F;
+    background:linear-gradient(90deg,rgba(217,48,37,.13),rgba(255,196,60,.20));
+    border:1px solid rgba(217,48,37,.32);
+  }
+  body[data-part="2"] .ph-badge b{color:#D93025;}
+  body[data-part="2"] .pill{background:rgba(255,196,60,.24);border-color:rgba(201,138,18,.42);color:#7A5200;}
+  body[data-part="2"] .pill i{background:#E8AE24;}
+  body[data-part="2"] .date b{color:#C98A12;}
+  body[data-part="2"] .sec-no{background:linear-gradient(135deg,#FFD24A,#E8AE24);color:#3A2400;}
+  body[data-part="2"] .sec-title{
+    background:linear-gradient(180deg,#A8140F 15%,#C98A12 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  /* 集团卡 */
+  body[data-part="2"] .gcard{
+    background:linear-gradient(180deg,#FFFFFF,#FFFBF3);
+    border:1px solid rgba(20,24,33,.10);
+    box-shadow:0 6px 18px rgba(168,114,12,.10);
+  }
+  body[data-part="2"] .gcard .g-name{color:#8C1D13;}
+  body[data-part="2"] .gcard .g-num b{color:#141821;}
+  body[data-part="2"] .gcard .g-num .gap b{color:#D93025;}
+  body[data-part="2"] .gbar{background:rgba(20,24,33,.09);}
+  /* 区域合计条 */
+  body[data-part="2"] .total-strip{
+    background:linear-gradient(90deg,rgba(217,48,37,.12),rgba(255,196,60,.22));
+    border:1px solid rgba(201,138,18,.40);
+    box-shadow:0 5px 16px rgba(168,114,12,.10);
+  }
+  body[data-part="2"] .total-strip .t-l{color:#8C1D13;}
+  body[data-part="2"] .total-strip .t-r b{color:#141821;}
+  body[data-part="2"] .total-strip .t-r .hl b{color:#D93025;}
+  /* 门店表 */
+  body[data-part="2"] th{color:var(--txt3);}
+  body[data-part="2"] .grp-name{color:#8C1D13;}
+  body[data-part="2"] td{
+    background:#FFFFFF;
+    color:var(--txt2);
+    border-top:1px solid rgba(20,24,33,.07);border-bottom:1px solid rgba(20,24,33,.07);
+    box-shadow:0 2px 8px rgba(120,90,30,.05);
+  }
+  body[data-part="2"] td.s{border-left:1px solid rgba(20,24,33,.07);}
+  body[data-part="2"] td:last-child{border-right:1px solid rgba(20,24,33,.07);}
+  body[data-part="2"] td .store{color:#141821;}
+  body[data-part="2"] td.t{color:#8A5B00;}
+  body[data-part="2"] td.a{color:#141821;}
+  body[data-part="2"] td.g{color:#D93025;}
+  body[data-part="2"] td.zero{color:rgba(20,24,33,.30);}
+  body[data-part="2"] .cellbar{background:rgba(20,24,33,.09);}
+  body[data-part="2"] .cellbar i{background:linear-gradient(90deg,#FFB020,#E8392B);}
+  body[data-part="2"] .gbar i{background:linear-gradient(90deg,#FFB020,#E8392B);}
+  /* 页脚 */
+  body[data-part="2"] footer{border-top:1px solid rgba(20,24,33,.13);}
+  body[data-part="2"] .brand{color:rgba(20,24,33,.46);}
 
   @media (max-width:720px){
     .wrap{padding:0 18px 30px;}
@@ -532,7 +605,7 @@ const DATA = {
         <td class="a ${d===0?'zero':''}">${d}</td>
         <td class="g">${gap}</td>
         <td style="width:150px;">
-          <span style="font-size:15px;color:#FFE9A8;font-weight:800;">${p2.toFixed(0)}%</span>
+          <span style="font-size:15px;color:var(--hl-gold);font-weight:800;">${p2.toFixed(0)}%</span>
           <span class="cellbar"><i style="width:${p2.toFixed(1)}%"></i></span>
         </td>
       </tr>`;
