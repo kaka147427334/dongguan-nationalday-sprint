@@ -571,32 +571,33 @@
 /* ========= 数据区（每日只改这里） =========
    格式：[短名, 全名, 目标, 已订, 今日新增, 是否并入集团不单列(1=隐藏该行)]
    目标写 null = 该店目标待补（不计入目标合计，其已订仍计入集团/区域）
-   第 6 位写 1 = 该店「不单列」，已订/今日新增并入所属集团合计（东唐·企石）
+   第 6 位写 1 = 该店「不单列」，已订/今日新增并入所属集团合计（东唐·企石、高胜）
    已订 = 6日起累计（含当日新增）；今日新增 = 10.7 当天新锁单数
-   2026-10-07 14:05 更新：今日共 21 单（锁单时间 09:32–14:05）—— 莞太路 6 / 虎门车城 3 / 大岭山 3 / 松山湖 3 / 常朗 2 / 东城 2 / 企石 1 / 寮步 1 */
+   2026-10-07 15:36 更新：今日共 43 单（锁单时间 09:32–15:34）—— 莞太路 10 / 东城 6 / 寮步 5 / 松山湖 5 / 虎门车城 4 / 常朗 4 / 石排 3 / 大岭山 3 / 高胜 1 / 厚街 1 / 企石 1 */
 const DATA = {
-  updated: '2026-10-07 14:05',
-  updatedNote: '6日起累计已订 · 今日新增 21 单（企石 1 单并入东唐）',
-  todayAdd: 21,
+  updated: '2026-10-07 15:36',
+  updatedNote: '6日起累计已订 · 今日新增 43 单（企石、高胜并入东唐）',
+  todayAdd: 43,
   groups: [
     { name:'一维集团', members:'莞太 · 厚街 · 大岭山 · 长安', stores:[
-      ['莞太路店','东莞零跑中心莞太路店', 26, 9, 6],
-      ['厚街店','东莞体验中心厚街店', 18, 1, 0],
+      ['莞太路店','东莞零跑中心莞太路店', 26, 13, 10],
+      ['厚街店','东莞体验中心厚街店', 18, 2, 1],
       ['大岭山店','东莞体验中心大岭山镇店', 18, 3, 3],
       ['长安振安东路店','东莞体验中心长安振安东路店', 10, 2, 0]
     ]},
-    { name:'东唐集团', members:'常朗 · 松山湖 · 东城 · 石排 · 企石', stores:[
-      ['常朗路店','东莞零跑中心常朗路店', 34, 5, 2],
-      ['松山湖店','东莞体验中心松山湖店', 7, 6, 3],
-      ['东城店','东莞体验中心东城店', 17, 6, 2],
-      ['石排大道店','东莞体验中心石排大道店', 20, 4, 0],
-      ['企石店','东莞体验中心企石店', null, 1, 1, 1]
+    { name:'东唐集团', members:'常朗 · 松山湖 · 东城 · 石排 · 企石 · 高胜', stores:[
+      ['常朗路店','东莞零跑中心常朗路店', 34, 7, 4],
+      ['松山湖店','东莞体验中心松山湖店', 7, 8, 5],
+      ['东城店','东莞体验中心东城店', 17, 10, 6],
+      ['石排大道店','东莞体验中心石排大道店', 20, 7, 3],
+      ['企石店','东莞体验中心企石店', null, 1, 1, 1],
+      ['高胜店','东莞体验中心高胜车城店', null, 1, 1, 1]
     ]},
     { name:'东富集团', members:'寮步', stores:[
-      ['寮步车城店','东莞零跑中心寮步车城店', 28, 5, 1]
+      ['寮步车城店','东莞零跑中心寮步车城店', 28, 9, 5]
     ]},
     { name:'华跃集团', members:'虎门', stores:[
-      ['虎门车城店','东莞零跑中心虎门车城店', 22, 4, 3]
+      ['虎门车城店','东莞零跑中心虎门车城店', 22, 5, 4]
     ]}
   ]
 };
@@ -605,13 +606,13 @@ const DATA = {
   const gEl = document.getElementById('groupCards');
   const tEl = document.getElementById('groupTables');
   let totT=0, totD=0;
-  const pct = (d,t)=> t>0 ? Math.min(100, d/t*100) : 0;
+  const pct = (d,t)=> t>0 ? d/t*100 : 0;   // 不封顶：超额完成要显示 >100%（进度条 overflow:hidden，宽度不会溢出）
 
   DATA.groups.forEach(g=>{
     const gt = g.stores.reduce((s,x)=>s+(x[2]||0),0);   // 目标（null=待补，不计）
     const gd = g.stores.reduce((s,x)=>s+(x[3]||0),0);   // 已订（含并入集团、不单列的店）
     const gn = g.stores.reduce((s,x)=>s+(x[4]||0),0);   // 集团今日新增（含不单列的店）
-    const gg = gt-gd;
+    const gg = Math.max(0, gt-gd);   // 超额完成时缺口显示 0，不显示负数
     totT+=gt; totD+=gd;
     const p = pct(gd,gt);
     const addTag = n => `<i class="add">+${n}</i>`;
@@ -629,7 +630,7 @@ const DATA = {
     // 第 6 位 = 1 的店「并入集团不单列」，只进合计、不出现在门店明细表
     const rows = g.stores.filter(s=>!s[5]).map(s=>{
       const [short,full,t,d,tn] = s;
-      const gap = t-d, p2 = pct(d,t);
+      const gap = Math.max(0, t-d), p2 = pct(d,t);
       return `<tr>
         <td class="s"><span class="store">${short}<small>${full}</small></span></td>
         <td class="t">${t}</td>
@@ -647,7 +648,7 @@ const DATA = {
         <div class="grp-head">
           <span class="grp-dot"></span>
           <span class="grp-name">${g.name}</span>
-          <span class="grp-tot">目标 ${gt} ｜ 已订 ${gd} ｜ 缺口 ${gt-gd} ｜ <b class="gadd">今日 +${gn}</b></span>
+          <span class="grp-tot">目标 ${gt} ｜ 已订 ${gd} ｜ 缺口 ${Math.max(0,gt-gd)} ｜ <b class="gadd">今日 +${gn}</b></span>
         </div>
         <table>
           <thead><tr>
