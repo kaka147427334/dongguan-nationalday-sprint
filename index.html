@@ -12,6 +12,7 @@
     --line:rgba(255,210,74,.24);
     --card-line:rgba(255,255,255,.11);
     --hl-gold:#FFE9A8;
+    --add:#FF6A4D;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{background:#0A0E19;}
@@ -95,6 +96,7 @@
   .sec-title{font-size:30px;font-weight:900;letter-spacing:1px;
     background:linear-gradient(180deg,#FFFFFF,#FFDF9A);-webkit-background-clip:text;background-clip:text;color:transparent;}
   .sec-sub{font-size:17px;color:var(--txt3);font-weight:600;letter-spacing:.4px;margin-left:auto;}
+  .sec-sub b{color:#FF8A6E;font-weight:900;}
 
   /* ================= PART 1 ================= */
   .p1{display:flex;flex-direction:column;gap:16px;}
@@ -162,7 +164,7 @@
   .gcard .g-mem{font-size:12.5px;color:var(--txt3);font-weight:600;line-height:1.4;margin-bottom:12px;min-height:35px;}
   .gcard .g-num{font-size:15px;color:var(--txt2);font-weight:700;line-height:1.85;}
   .gcard .g-num b{font-size:30px;font-weight:900;color:#FFF;letter-spacing:.5px;vertical-align:-3px;}
-  .gcard .g-num .gap b{color:#FF7A5E;}
+  .gcard .g-num .gap b,.gcard .g-num .gapb{color:#FF7A5E;}
   .gbar{height:8px;border-radius:999px;background:rgba(255,255,255,.10);margin-top:12px;overflow:hidden;}
   .gbar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#FFD24A,#FF8A3C);}
   .grate{font-size:13px;color:var(--txt3);font-weight:700;margin-top:7px;letter-spacing:.3px;}
@@ -189,6 +191,7 @@
   .grp-dot{width:10px;height:10px;border-radius:3px;background:linear-gradient(135deg,#FFD24A,#E8392B);}
   .grp-name{font-size:19px;font-weight:900;color:#FFE9A8;letter-spacing:.8px;}
   .grp-tot{font-size:14px;color:var(--txt3);font-weight:700;margin-left:auto;letter-spacing:.3px;}
+  .grp-tot .gadd{color:#FF8A6E;font-weight:900;}
   table{width:100%;border-collapse:separate;border-spacing:0 7px;}
   th{font-size:14.5px;font-weight:800;color:var(--txt3);letter-spacing:1px;text-align:right;padding:0 14px 4px;}
   th.s{text-align:left;}
@@ -207,6 +210,12 @@
   .cellbar{display:block;height:7px;border-radius:999px;background:rgba(255,255,255,.10);margin-top:7px;overflow:hidden;}
   .cellbar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#FFD24A,#FF8A3C);}
   td.zero{color:#6F7686;}
+  /* 今日新增红色小字，跟在「已订」数字后面 */
+  .add{
+    font-style:normal;font-size:13px;font-weight:900;letter-spacing:0;
+    color:var(--add);margin-left:5px;vertical-align:1px;
+  }
+  .gcard .g-num .add{font-size:14px;}
 
   /* ================= PART 3 ================= */
   .sc{
@@ -266,6 +275,7 @@
     --txt:#141821; --txt2:rgba(20,24,33,.86); --txt3:rgba(20,24,33,.58);
     --line:rgba(201,138,18,.40);
     --card-line:rgba(20,24,33,.11);
+    --add:#D93025;
     color:var(--txt);
     background:
       radial-gradient(900px 420px at 50% -170px, rgba(232,57,43,.14), transparent 70%),
@@ -296,7 +306,7 @@
   }
   body[data-part="2"] .gcard .g-name{color:#8C1D13;}
   body[data-part="2"] .gcard .g-num b{color:#141821;}
-  body[data-part="2"] .gcard .g-num .gap b{color:#D93025;}
+  body[data-part="2"] .gcard .g-num .gap b,body[data-part="2"] .gcard .g-num .gapb{color:#D93025;}
   body[data-part="2"] .gbar{background:rgba(20,24,33,.09);}
   /* 区域合计条 */
   body[data-part="2"] .total-strip{
@@ -313,6 +323,8 @@
   /* 门店表 */
   body[data-part="2"] th{color:var(--txt3);}
   body[data-part="2"] .grp-name{color:#8C1D13;}
+  body[data-part="2"] .sec-sub b{color:#D93025;}
+  body[data-part="2"] .grp-tot .gadd{color:#D93025;font-weight:900;}
   body[data-part="2"] td{
     background:#FFFFFF;
     color:var(--txt2);
@@ -449,7 +461,7 @@
     <div class="sec-head">
       <span class="sec-no">PART 2</span>
       <span class="sec-title">Target 目标</span>
-      <span class="sec-sub">截至 10.7 11:33 目标进度 🎯</span>
+      <span class="sec-sub">更新至 <b id="secTime">10.7 11:50</b> 🎯</span>
     </div>
 
     <div class="p2-sum" id="groupCards"></div>
@@ -557,31 +569,31 @@
 })();
 
 /* ========= 数据区（每日只改这里） =========
-   格式：[短名, 全名, 目标, 已订]  —— 缺口自动计算
-   已订 = 6日起累计（含当日新增）；2026-10-07 11:33 更新，今日新增 10 单：
-   莞太路 4 / 大岭山 2 / 东城 2 / 虎门 1 / 寮步 1 */
+   格式：[短名, 全名, 目标, 已订, 今日新增]  —— 缺口、达成率自动计算
+   已订 = 6日起累计（含当日新增）；今日新增 = 10.7 当天新锁单数
+   2026-10-07 11:50 更新：莞太路 +4 / 大岭山 +2 / 东城 +2 / 虎门 +1 / 寮步 +1（今日共 10 单） */
 const DATA = {
-  updated: '2026-10-07 11:33',
+  updated: '2026-10-07 11:50',
   updatedNote: '6日起累计已订 · 今日新增 10 单',
   todayAdd: 10,
   groups: [
     { name:'一维集团', members:'莞太 · 厚街 · 大岭山 · 长安', stores:[
-      ['莞太路店','东莞零跑中心莞太路店', 26, 7],
-      ['厚街店','东莞体验中心厚街店', 18, 1],
-      ['大岭山店','东莞体验中心大岭山镇店', 18, 2],
-      ['长安振安东路店','东莞体验中心长安振安东路店', 10, 2]
+      ['莞太路店','东莞零跑中心莞太路店', 26, 7, 4],
+      ['厚街店','东莞体验中心厚街店', 18, 1, 0],
+      ['大岭山店','东莞体验中心大岭山镇店', 18, 2, 2],
+      ['长安振安东路店','东莞体验中心长安振安东路店', 10, 2, 0]
     ]},
     { name:'东唐集团', members:'常朗 · 松山湖 · 东城 · 石排', stores:[
-      ['常朗路店','东莞零跑中心常朗路店', 34, 3],
-      ['松山湖店','东莞体验中心松山湖店', 7, 3],
-      ['东城店','东莞体验中心东城店', 17, 6],
-      ['石排大道店','东莞体验中心石排大道店', 20, 4]
+      ['常朗路店','东莞零跑中心常朗路店', 34, 3, 0],
+      ['松山湖店','东莞体验中心松山湖店', 7, 3, 0],
+      ['东城店','东莞体验中心东城店', 17, 6, 2],
+      ['石排大道店','东莞体验中心石排大道店', 20, 4, 0]
     ]},
     { name:'东富集团', members:'寮步', stores:[
-      ['寮步车城店','东莞零跑中心寮步车城店', 28, 5]
+      ['寮步车城店','东莞零跑中心寮步车城店', 28, 5, 1]
     ]},
     { name:'华跃集团', members:'虎门', stores:[
-      ['虎门车城店','东莞零跑中心虎门车城店', 22, 2]
+      ['虎门车城店','东莞零跑中心虎门车城店', 22, 2, 1]
     ]}
   ]
 };
@@ -595,26 +607,29 @@ const DATA = {
   DATA.groups.forEach(g=>{
     const gt = g.stores.reduce((s,x)=>s+x[2],0);
     const gd = g.stores.reduce((s,x)=>s+x[3],0);
+    const gn = g.stores.reduce((s,x)=>s+(x[4]||0),0);   // 集团今日新增
     const gg = gt-gd;
     totT+=gt; totD+=gd;
     const p = pct(gd,gt);
+    const addTag = n => `<i class="add">+${n}</i>`;
     gEl.insertAdjacentHTML('beforeend', `
       <div class="gcard">
         <div class="g-name">${g.name}</div>
         <div class="g-mem">${g.members}</div>
         <div class="g-num">目标 <b>${gt}</b></div>
-        <div class="g-num">已订 ${gd} ｜ <span class="gap">缺口 <b>${gg}</b></span></div>
+        <div class="g-num">已订 ${gd}${addTag(gn)}</div>
+        <div class="g-num">缺口 <b class="gapb">${gg}</b></div>
         <div class="gbar"><i style="width:${p.toFixed(1)}%"></i></div>
         <div class="grate">达成 ${p.toFixed(1)}%</div>
       </div>`);
 
     const rows = g.stores.map(s=>{
-      const [short,full,t,d] = s;
+      const [short,full,t,d,tn] = s;
       const gap = t-d, p2 = pct(d,t);
       return `<tr>
         <td class="s"><span class="store">${short}<small>${full}</small></span></td>
         <td class="t">${t}</td>
-        <td class="a ${d===0?'zero':''}">${d}</td>
+        <td class="a ${d===0?'zero':''}">${d}${addTag(tn||0)}</td>
         <td class="g">${gap}</td>
         <td style="width:150px;">
           <span style="font-size:15px;color:var(--hl-gold);font-weight:800;">${p2.toFixed(0)}%</span>
@@ -628,7 +643,7 @@ const DATA = {
         <div class="grp-head">
           <span class="grp-dot"></span>
           <span class="grp-name">${g.name}</span>
-          <span class="grp-tot">目标 ${gt} ｜ 已订 ${gd} ｜ 缺口 ${gt-gd}</span>
+          <span class="grp-tot">目标 ${gt} ｜ 已订 ${gd} ｜ 缺口 ${gt-gd} ｜ <b class="gadd">今日 +${gn}</b></span>
         </div>
         <table>
           <thead><tr>
@@ -647,6 +662,11 @@ const DATA = {
   if (un && DATA.updatedNote) un.textContent = DATA.updatedNote;
   var tt = document.getElementById('tToday');
   if (tt) tt.textContent = '今日 +' + (DATA.todayAdd || 0);
+  var st = document.getElementById('secTime');
+  if (st && DATA.updated) {
+    var m = String(DATA.updated).match(/^\d{4}-(\d{2})-(\d{2})\s+(\d{2}):(\d{2})/);
+    st.textContent = m ? (+m[1]) + '.' + (+m[2]) + ' ' + m[3] + ':' + m[4] : DATA.updated;
+  }
 })();
 </script>
 </body>
